@@ -33,7 +33,7 @@
     </bean>
 
     <!--========================== 配置和Mybatisde整合======================-->
-    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
         <!--    指定Mybatis全局配置文件的位置-->
         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
         <property name="dataSource" ref="PooledDataSource"></property>
@@ -47,7 +47,11 @@
         <property name="basePackage" value="com.ssm_crud.dao"></property>
     </bean>
     <!--  配置一个可以执行批量的sqlSession   -->
-<!--    <bean class="SqlSessionTemplate"></bean>-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+        <constructor-arg name="executorType" value="BATCH"></constructor-arg>
+
+    </bean>
     <!--    ====================================================================-->
 
 
