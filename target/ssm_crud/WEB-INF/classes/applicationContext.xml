@@ -4,12 +4,25 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.3.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+">
+
     <context:component-scan base-package="com.ssm_crud">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <!--Spring的配置文件，这里主要配置跟业务逻辑有关的-->
+
     <!--  =====================数据源、事务控制、xxx =======================-->
     <context:property-placeholder location="classpath:dbconfig.properties"/>
     <bean id="PooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -22,7 +35,7 @@
     <!--========================== 配置和Mybatisde整合======================-->
     <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
         <!--    指定Mybatis全局配置文件的位置-->
-        <property name="configLocation" value="classpath:mybatis.xml"></property>
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
         <property name="dataSource" ref="PooledDataSource"></property>
         <!--    指定mybatis.mapper文件的位置-->
         <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
@@ -33,6 +46,8 @@
         <!--    扫描所有dao接口的实现，加入到ioc容器中-->
         <property name="basePackage" value="com.ssm_crud.dao"></property>
     </bean>
+    <!--  配置一个可以执行批量的sqlSession   -->
+<!--    <bean class="SqlSessionTemplate"></bean>-->
     <!--    ====================================================================-->
 
 
@@ -42,6 +57,7 @@
         <property name="dataSource" ref="PooledDataSource"></property>
     </bean>
      <!--    开启基于注解的事务，使用xml配置形式的事务（必要重要的使用配置式）  -->
+
     <aop:config>
         <!--    切入点表达式  -->
         <aop:pointcut  expression="execution(* com.ssm_crud.service..*(..))" id="txPoint"/>
@@ -58,6 +74,7 @@
             <tx:method name="get*" read-only="true" />
         </tx:attributes>
     </tx:advice>
+
     <!--spring配置文件的核心点（数据源、与mybatis的整合、事务控制）-->
     <!--     -->
 </beans>
