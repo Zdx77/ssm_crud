@@ -2,10 +2,11 @@
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-
+<!--mybatis逆向工程-->
 <generatorConfiguration>
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!--   生成的文件不带注释    -->
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
         </commentGenerator>

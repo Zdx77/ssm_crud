@@ -1,29 +1,27 @@
 package com.ssm_crud.test;
-import com.ssm_crud.bean.Department;
-import com.ssm_crud.bean.Employee;
+
 import com.ssm_crud.dao.DepartmentMapper;
 import com.ssm_crud.dao.EmployeeMapper;
 import org.apache.ibatis.session.SqlSession;
-import org.junit.runner.*;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.junit.Test;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.UUID;
 
 /*
  * 测试dao层的工作
  *文件名: MapperTest
  *创建者: zdx
  *创建时间:2021/3/15 13:19
- * 推荐spring的项目就可以使用spring的单元测试，可以自动注入我们需要的组件
- * 1.导入SpringTest模块
- * 2.@ContextConfiguration指定Spring配置文件的位置
- * 3.直接autowired要使用的组件即可
  */
+
+
+//  推荐spring的项目就可以使用spring的单元测试，可以自动注入我们需要的组件
+//       1.导入SpringTest模块
+//       2.@ContextConfiguration指定Spring配置文件的位置
+//       3.直接autowired要使用的组件即可
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})
 public class MapperTest {
