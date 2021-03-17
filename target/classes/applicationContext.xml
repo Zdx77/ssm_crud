@@ -60,10 +60,10 @@
         <!--    控制住数据源  -->
         <property name="dataSource" ref="PooledDataSource"></property>
     </bean>
-     <!--    开启基于注解的事务，使用xml配置形式的事务（必要重要的使用配置式）  -->
 
+    <!--    开启基于注解的事务，使用xml配置形式的事务（必要主要的都是使用配置式）  -->
     <aop:config>
-        <!--    切入点表达式  -->
+        <!--    切入点表达式 （哪些要切入） -->
         <aop:pointcut  expression="execution(* com.ssm_crud.service..*(..))" id="txPoint"/>
         <!--    配置事务增强  -->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
@@ -80,5 +80,4 @@
     </tx:advice>
 
     <!--spring配置文件的核心点（数据源、与mybatis的整合、事务控制）-->
-    <!--     -->
 </beans>

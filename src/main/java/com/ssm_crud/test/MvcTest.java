@@ -24,11 +24,16 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
+
+//      使用Spring测试模块提供的测试请求功能，测试CURD请求的正确性
+//       Spring4测试的时候 需要servlet3.0的支持
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
+//把web ioc容器 也能拿过来
 @ContextConfiguration(locations={"classpath:applicationContext.xml","file:D:/ssm_crud/src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml"})
 public class MvcTest {
-    //传入SpringMvc的ioc
+    //传入SpringMvc的ioc (autowired只能auto ioc容器内部的)
     @Autowired
     WebApplicationContext context;
     //虚拟mvc请求，获取到处理结果
