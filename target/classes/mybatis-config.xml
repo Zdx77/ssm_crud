@@ -6,6 +6,7 @@
     <!--    开启驼峰命名规则-->
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
     </settings>
 
 
@@ -14,6 +15,10 @@
     </typeAliases>
 
     <plugins>
-        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--   分页合理化-->
+            <property name="reasonable" value="true"/>
+        </plugin>
     </plugins>
+
 </configuration>
